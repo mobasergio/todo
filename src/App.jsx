@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ItemsList from "./ItemsList";
 
 function App() {
@@ -9,7 +9,6 @@ function App() {
     { id: randomID(), text: "Como estamos", done: true},
     { id: randomID(), text: "Mu bien tu que", done: false }
   ]);
-  const [animate, setAnimate] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (id) => {
@@ -34,10 +33,6 @@ function App() {
   const doneItems = todoItems.filter(item => item.done);
   const notDoneItems = todoItems.filter(item => !item.done);
 
-  useEffect(() => {
-    setAnimate(true);
-  }, [todoItems])
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -45,9 +40,9 @@ function App() {
         <button type="submit">Add</button>
       </form>
       <h1>To-do list</h1>
-      <ItemsList itemsList={notDoneItems} handleChange={handleChange} animate={animate}/>
+      <ItemsList itemsList={notDoneItems} handleChange={handleChange} />
       <h1>Done items</h1>
-      <ItemsList itemsList={doneItems} handleChange={handleChange} animate={animate}/>
+      <ItemsList itemsList={doneItems} handleChange={handleChange} />
     </>
   )
 }
